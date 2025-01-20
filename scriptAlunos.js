@@ -8,12 +8,15 @@ function carregarAlunos(){
 
             dados.forEach(element => {
                 if(element.aluno){
-                    const li = document.createElement('li')
-                    const link = document.createElement('a')
-                    link.href = `fichaAluno.html?aluno=${element.aluno}`;
-                    link.textContent = element.aluno
-                    li.appendChild(link)
-                    listaAlunos.appendChild(li)
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = "#";  // Não direciona para outra página
+                    link.textContent = element.aluno;
+                    link.onclick = function() {
+                        carregarFichas(element.aluno);  // Chama a função para carregar as fichas
+                    };
+                    li.appendChild(link);
+                    listaAlunos.appendChild(li);
                 }
             });
         })
