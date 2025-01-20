@@ -1,19 +1,23 @@
-function carregarFicha(aluno){
-    fetch(`http://localhost:3000/${aluno}/fichas_aluno/`)
+function carregarFichas(aluno){
+    document.getElementById('lista_alunos').style.display = 'none';
+    document.getElementById('titulo').textContent=`Fichas de ${aluno}`;
+    document.getElementById('fichas_aluno').style.display = 'block';
+
+    fetch(`http://localhost:3000/${aluno}/fichas_aluno`)
         .then(response => response.json())
-        .then(dados => {
-            const listaAlunos = document.getElementById('lista-fichas');
+        .then(fichas => {
+            const fichasAluno = document.getElementById('fichas_aluno');
 
-            listaAlunos.innerHTML = '';
+            fichasAluno.innerHTML = '';
 
-            dados.forEach(element => {
-                if(element.aluno){
-                    const li = document.createElement('li')
-                    const link = document.createElement('a')
-                    link.href = `fichaAluno.html?aluno=${element.aluno}`;
-                    link.textContent = element.aluno
-                    li.appendChild(link)
-                    listaAlunos.appendChild(li)
+            fichas.forEach(element => {
+                if(element.tipo_de_avaliacao){
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = "#";  // Não direciona para outra   página
+                    link.textContent = element.tipo_de_avaliacao;
+                    li.appendChild(link);
+                    fichasAluno.appendChild(li);
                 }
             });
         })
@@ -21,4 +25,4 @@ function carregarFicha(aluno){
             console.error('Erro ao carregar dados:', error);
         });
 }
-window.onload = carregarAlunos;
+window.onload = carregarFicha;

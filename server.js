@@ -36,7 +36,8 @@ app.get('/:atributo/:tabela', (req, res) => {
         res.json(resultados);  // Retorna os dados no formato JSON
         });
     }else if (tabela == "fichas_aluno"){
-        db.query(`SELECT DISTINCT tipo_de_avaliacao FROM ?? WHERE aluno2 LIKE ??`, [tabela,atributo], (err, resultados) => {
+        const searchValue = `%${atributo.join(' ')}%`;
+        db.query(`SELECT DISTINCT tipo_de_avaliacao FROM ?? WHERE aluno2 LIKE ?`, [tabela,searchValue], (err, resultados) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });
