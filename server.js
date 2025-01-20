@@ -30,12 +30,17 @@ db.connect((err) => {
 app.get('/:atributo/:tabela', (req, res) => {
     const atributo = req.params.atributo.split('_');
     const tabela = req.params.tabela; // Extrai o nome da tabela da URL
-    console.log(tabela)
-    console.log(atributo)
-    // Consulta os dados da tabela dinâmica
-    db.query(`SELECT ?? FROM ??`, [atributo,tabela], (err, resultados) => {
+    if(tabela == "alunos"){
+        db.query(`SELECT ?? FROM ??`, [atributo,tabela], (err, resultados) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
-    });
+        });
+    }else if (tabela == "fichas_aluno"){
+        db.query(`SELECT DISTINCT tipo_de_avaliacao FROM ?? WHERE aluno2 LIKE ??`, [tabela,atributo], (err, resultados) => {
+        if (err) return res.status(500).send(err);
+        res.json(resultados);  // Retorna os dados no formato JSON
+        });
+    }
+    
 });
 

@@ -10,7 +10,7 @@ function carregarAlunos(){
                 if(element.aluno){
                     const li = document.createElement('li');
                     const link = document.createElement('a');
-                    link.href = "#";  // Não direciona para outra página
+                    link.href = "#";  // Não direciona para outra   página
                     link.textContent = element.aluno;
                     link.onclick = function() {
                         carregarFichas(element.aluno);  // Chama a função para carregar as fichas

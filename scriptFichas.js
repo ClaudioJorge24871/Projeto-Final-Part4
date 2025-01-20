@@ -1,5 +1,5 @@
-function carregarFicha(){
-    fetch(`http://localhost:3000/${aluno}/ficha/`)
+function carregarFicha(aluno){
+    fetch(`http://localhost:3000/${aluno}/fichas_aluno/`)
         .then(response => response.json())
         .then(dados => {
             const listaAlunos = document.getElementById('lista-fichas');
