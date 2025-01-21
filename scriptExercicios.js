@@ -1,12 +1,11 @@
 function carregarExercicios(aluno,ficha){
-    /*
     historico.push({
         nome_Aluno: aluno,
         ficha: ficha,
         mostrarFichas: true,
-        mostrarAlunos: true
-    })*/
-    console.log("AQUI")
+        mostrarAlunos: false
+    })
+
     document.getElementById('titulo').textContent=`Exercicios da ${ficha} de ${aluno}`;
     document.getElementById('lista_alunos').style.display = 'none';
     document.getElementById('fichas_aluno').style.display = 'none';

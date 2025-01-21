@@ -13,6 +13,10 @@
         const estado_A_Mostrar = historico.pop()
         if (estado_A_Mostrar.mostrarAlunos){
             carregarAlunos()
+        } else if(estado_A_Mostrar.mostrarFichas){
+            document.getElementById('exercicios_ficha_aluno').style.display = 'none';
+            const aluno = estado_A_Mostrar.nome_Aluno
+            carregarFichas(aluno)
         }
     }
 </script>
