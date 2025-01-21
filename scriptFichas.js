@@ -3,12 +3,11 @@ function carregarFichas(aluno){
         nome_Aluno: aluno,
         mostrarAlunos: true,
     })
-    console.log(historico)
     
     document.getElementById('lista_alunos').style.display = 'none';
     document.getElementById('titulo').textContent=`Fichas de ${aluno}`;
     document.getElementById('fichas_aluno').style.display = 'block';
-    document.getElementById('butao_voltar').style.display = 'block';
+    document.getElementById('botao_voltar').style.display = 'block';
 
     fetch(`http://localhost:3000/${aluno}/fichas_aluno`)
         .then(response => response.json())

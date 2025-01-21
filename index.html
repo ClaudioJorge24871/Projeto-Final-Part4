@@ -8,11 +8,9 @@
 <script>
     // Função de inicialização para carregar os alunos quando a página for carregada
     window.onload = carregarAlunos
-    console.log(historico)
     function voltarDados(){
         const estado_A_Mostrar = historico.pop()
         if (estado_A_Mostrar.mostrarAlunos){
-            console.log("AQui")
             carregarAlunos()
         }
     }
@@ -25,7 +23,7 @@
 <body>
     <h1 id="titulo">Alunos</h1>
 
-    <button id="butao_voltar"  onclick=voltarDados() style="display:none;">Voltar</button>
+    <button id="botao_voltar"  onclick=voltarDados() style="display:none;">Voltar</button>
     <ul id="lista_alunos">
         <!--Os nomes e numeros dos alunos aparecerão aqui-->
     </ul>
