@@ -41,7 +41,16 @@ app.get('/:atributo/:tabela', (req, res) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });
+    }else if (tabela == "exercicios_ficha_aluno"){
+        db.query(`SELECT exercicio from ?? 
+            where aluno like ? 
+            and tipo_de_avaliacao like ?
+            order by exercicio;`, [tabela, `%${atributo[0]}%`,`%${atributo[1]}%`] , (err, resultados) => {
+        if (err) return res.status(500).send(err);
+        res.json(resultados);  // Retorna os dados no formato JSON
+        });
     }
+
     
 });
 

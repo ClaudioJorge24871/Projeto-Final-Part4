@@ -22,6 +22,9 @@ function carregarFichas(aluno){
                     const link = document.createElement('a');
                     link.href = "#";  // Não direciona para outra   página
                     link.textContent = element.tipo_de_avaliacao;
+                    link.onclick = function() {
+                        carregarExercicios(aluno,element.tipo_de_avaliacao);  // Chama a função para carregar as fichas
+                    };
                     li.appendChild(link);
                     fichasAluno.appendChild(li);
                 }
