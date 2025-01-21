@@ -7,7 +7,7 @@ app.use(cors())
 
 // Configuração da base de dados
 const db = mysql.createConnection({
-    host: '192.168.0.101',
+    host: '192.168.0.104',
     user: 'claudio',
     password: 'Clauudio90#',
     database: 'compararplagiodb'

@@ -1,7 +1,14 @@
 function carregarFichas(aluno){
+    historico.push({
+        nome_Aluno: aluno,
+        mostrarAlunos: true,
+    })
+    console.log(historico)
+    
     document.getElementById('lista_alunos').style.display = 'none';
     document.getElementById('titulo').textContent=`Fichas de ${aluno}`;
     document.getElementById('fichas_aluno').style.display = 'block';
+    document.getElementById('butao_voltar').style.display = 'block';
 
     fetch(`http://localhost:3000/${aluno}/fichas_aluno`)
         .then(response => response.json())
@@ -25,4 +32,4 @@ function carregarFichas(aluno){
             console.error('Erro ao carregar dados:', error);
         });
 }
-window.onload = carregarFicha;
+window.onload = carregarFichas;

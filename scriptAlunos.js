@@ -1,4 +1,10 @@
 function carregarAlunos(){
+
+    document.getElementById('lista_alunos').style.display = 'block';
+    document.getElementById('titulo').textContent=`Alunos`;
+    document.getElementById('fichas_aluno').style.display = 'none';
+    document.getElementById('butao_voltar').style.display = 'none';
+
     fetch('http://localhost:3000/aluno/alunos')
         .then(response => response.json())
         .then(dados => {
