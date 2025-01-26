@@ -49,6 +49,8 @@ app.get('/:atributo/:tabela', (req, res) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });
+    }else if(tabela == "comparacoesplagio"){
+        
     }
 
     
