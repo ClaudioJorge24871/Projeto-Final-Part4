@@ -26,6 +26,9 @@ function carregarExercicios(aluno,ficha){
                     const link = document.createElement('a');
                     link.href = "#";  // Não direciona para outra página
                     link.textContent = `Exercicio ${element.exercicio}`;
+                    link.onclick = function(){
+                        carregarComparacoes(aluno,ficha,element.exercicio)
+                    }
                     li.appendChild(link);
                     listaExercicios.appendChild(li);
                 }

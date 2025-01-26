@@ -18,6 +18,11 @@
             document.getElementById('exercicios_ficha_aluno').style.display = 'none';
             const aluno = estado_A_Mostrar.nome_Aluno
             carregarFichas(aluno)
+        } else if(estado_A_Mostrar.mostrarExercicios){
+            document.getElementById('tabela_container').style.display = 'none';
+            const aluno = estado_A_Mostrar.nome_Aluno
+            const ficha = estado_A_Mostrar.ficha
+            carregarExercicios(aluno,ficha)
         }
     }
 </script>
@@ -42,7 +47,7 @@
         <!--Aqui vão aparecer os exercicios das fichas do aluno -->
     </ul>
 
-    <div id="tabela_container"></div>
+    <div id="tabela_container" style="display: none;"></div>
     
 </body>
 </html>
