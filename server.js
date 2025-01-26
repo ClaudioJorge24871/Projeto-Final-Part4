@@ -2,8 +2,10 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
+const compression = require("compression")
 
 app.use(cors())
+app.use(compression())
 
 // Configuração da base de dados
 const db = mysql.createConnection({
@@ -50,7 +52,12 @@ app.get('/:atributo/:tabela', (req, res) => {
         res.json(resultados);  // Retorna os dados no formato JSON
         });
     }else if(tabela == "comparacoesplagio"){
-        
+        db.query(`SELECT aluno1,aluno2 from ??
+            where tipo_de_avaliacao like ? 
+            and exercicio like ?;` , [tabela, `%${atributo[0]}%`,`%${atributo[1]}%`] , (err, resultados) => {
+        if (err) return res.status(500).send(err);
+        res.json(resultados);  // Retorna os dados no formato JSON
+        });
     }
 
     
