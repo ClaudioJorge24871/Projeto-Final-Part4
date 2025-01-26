@@ -27,7 +27,7 @@ function carregarComparacoes(aluno,tipo_de_avaliacao,exercicio){
             const alunos = Array.from(alunosSet).sort() //[al1,al2,al3]
 
             const matriz = Array.from({ length: alunos.length }, () => 
-                Array(alunos.length).fill('0')
+                Array(alunos.length).fill('N.A')
             );            
 
             // Coloca o valor do plagio nas interseções dos alunos
@@ -35,6 +35,7 @@ function carregarComparacoes(aluno,tipo_de_avaliacao,exercicio){
                 const rowIndex = alunos.indexOf(y.aluno1)
                 const colIndex = alunos.indexOf(y.aluno2)
                 matriz[rowIndex][colIndex] = y.indPlagio
+                matriz[colIndex][rowIndex] = y.indPlagio
             })
 
             const tabelaContainer = document.getElementById("tabela_container")
