@@ -27,7 +27,7 @@ function carregarComparacoes(aluno,tipo_de_avaliacao,exercicio){
             const alunos = Array.from(alunosSet).sort() //[al1,al2,al3]
 
             const matriz = Array.from({ length: alunos.length }, () => 
-                Array(alunos.length).fill('N.A')
+                Array(alunos.length).fill('0')
             );            
 
             // Coloca o valor do plagio nas interseções dos alunos

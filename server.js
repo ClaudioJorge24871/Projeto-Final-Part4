@@ -33,7 +33,7 @@ app.get('/:atributo/:tabela', (req, res) => {
     const atributo = req.params.atributo.split('_');
     const tabela = req.params.tabela; // Extrai o nome da tabela da URL
     if(tabela == "alunos"){
-        db.query(`SELECT ?? FROM ?? order by aluno asc` , [atributo,tabela], (err, resultados) => {
+        db.query(`SELECT ?? FROM ?? order by ??` , [atributo,tabela,atributo], (err, resultados) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });
