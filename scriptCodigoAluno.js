@@ -8,10 +8,12 @@ function carregarCodigo(aluno1,aluno2,ficha,exercicio){
         mostrarCodigo: true
     })
 
-    document.getElementById('titulo').textContent=`Exercicios da ${ficha} de ${aluno}`;
+    // rever titulo
+    // document.getElementById('titulo').textContent=`Exercicios da ${ficha} de ${aluno}`;
     document.getElementById('lista_alunos').style.display = 'none';
     document.getElementById('fichas_aluno').style.display = 'none';
     document.getElementById('exercicios_ficha_aluno').style.display = 'none';
+    document.getElementById('tabela_container').style.display = 'none';
     document.getElementById('codigo_alunos').style.display = 'block'
     document.getElementById('botao_voltar').style.display = 'block';
     //
