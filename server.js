@@ -56,12 +56,19 @@ app.get('/:atributo/:tabela', (req, res) => {
         res.json(resultados);  // Retorna os dados no formato JSON
         });
     }else if(tabela == "comparacoesplagio"){
-        db.query(`SELECT SUBSTRING(aluno1, 10) AS aluno1,
-            SUBSTRING(aluno2, 10) AS aluno2,
-            indPlagio
+        db.query(`SELECT aluno1,aluno2,indPlagio
+            from ??
             where tipo_de_avaliacao like ? 
             and exercicio like ?
             order by indPlagio desc;` , [tabela, `%${atributo[0]}%`,`%${atributo[1]}%`] , (err, resultados) => {
+        if (err) return res.status(500).send(err);
+        res.json(resultados);  // Retorna os dados no formato JSON
+        });
+    }else if(tabela == "codigos_alunos"){
+        db.query(`Select codigo 
+            from ?? 
+            where tipo_avaliacao like ? and exercicio = ? and aluno = ?;` ,
+            [tabela, `%${atributo[0]}%`,`%${atributo[1]}%`,`%${atributo[2]}`] , (err, resultados) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });

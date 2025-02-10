@@ -1,4 +1,9 @@
-function carregarComparacoes(aluno,tipo_de_avaliacao,exercicio){
+// Define global variables
+let selectedTipoDeAvaliacao;
+let selectedExercicio;
+
+
+function carregarComparacoes(aluno, tipo_de_avaliacao,exercicio){
     historico.push({ // Por verificar
         mostrarAlunos: false,
         mostrarFichas: false,
@@ -6,6 +11,9 @@ function carregarComparacoes(aluno,tipo_de_avaliacao,exercicio){
         nome_Aluno: aluno,
         ficha: tipo_de_avaliacao
     })
+    //Variaveis para passar no carregarCodigo
+    selectedTipoDeAvaliacao = tipo_de_avaliacao;
+    selectedExercicio = exercicio
 
     document.getElementById('titulo').textContent = `Tabela de comparacoes de ${tipo_de_avaliacao}, exercicio ${exercicio}`
     document.getElementById("exercicios_ficha_aluno").style.display = 'none';
@@ -63,32 +71,40 @@ function criarTabela(alunos,matriz){
     });
     tabela.appendChild(headerRow);
 
-    //Criação das linhas da tabela
-    alunos.forEach((aluno,rowIndex) => {
-        const row = document.createElement('tr')
-
-        const alunoCell = document.createElement('th')
-        alunoCell.textContent = aluno
-        row.appendChild(alunoCell)
-
-        matriz[rowIndex].forEach(indicePlagio => {
-            // Cria o elemento
+    alunos.forEach((aluno, rowIndex) => {
+        const row = document.createElement('tr');
+    
+        const alunoCell = document.createElement('th');
+        alunoCell.textContent = aluno;
+        row.appendChild(alunoCell);
+    
+        matriz[rowIndex].forEach((indicePlagio, colIndex) => {  
             const data = document.createElement('td');
-        
-            // Aplica a className
+    
+            // Apply class based on value
             const className = getCellClass(indicePlagio);
             data.classList.add(className);
-        
-            // Cria um link
+    
+            // Create the link
             const link = document.createElement('a');
-            link.textContent = indicePlagio; 
-            link.classList.add("valorAluno"); // Add class for styling
+            link.textContent = indicePlagio;
+            link.classList.add("valorAluno"); 
             link.href = "#";
-
-            data.appendChild(link); 
-            row.appendChild(data);  
+    
+            // Ensure that rowIndex !== colIndex (avoid self-comparison)
+            if (rowIndex !== colIndex) {
+                const aluno1 = alunos[rowIndex];
+                const aluno2 = alunos[colIndex];
+                // Add click event to call carregarCodigo
+                link.onclick = function () {
+                   carregarCodigo(aluno1, aluno2, selectedTipoDeAvaliacao, selectedExercicio);
+                };
+            }
+            
+            data.appendChild(link);
+            row.appendChild(data);
         });
-
+    
         tabela.appendChild(row)
     });
 
@@ -104,6 +120,3 @@ function getCellClass(value) {
     if (num >= 50) return "medium"; // Orange for moderate plagiarism
     return "low"; // Light green for low plagiarism
 }
-
-
-
