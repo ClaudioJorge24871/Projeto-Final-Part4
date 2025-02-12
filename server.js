@@ -39,9 +39,9 @@ app.get('/:atributo/:tabela', (req, res) => {
         });
     }else if (tabela == "fichas_aluno"){
         const searchValue = `%${atributo.join(' ')}%`;
-        db.query(`SELECT DISTINCT tipo_de_avaliacao, media_plag
+        db.query(`SELECT tipo_de_avaliacao, media_plag
             FROM ?? 
-            WHERE aluno2 LIKE ? 
+            WHERE aluno LIKE ? 
             ORDER BY tipo_de_avaliacao asc
             `, [tabela,searchValue], (err, resultados) => {
         if (err) return res.status(500).send(err);
@@ -51,7 +51,7 @@ app.get('/:atributo/:tabela', (req, res) => {
         db.query(`SELECT exercicio from ?? 
             where aluno like ? 
             and tipo_de_avaliacao like ?
-            order by exercicio;`, [tabela, `${atributo[0]}`,`${atributo[1]}`] , (err, resultados) => {
+            order by exercicio;`, [tabela, `%${atributo[0]}`,`${atributo[1]}`] , (err, resultados) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });

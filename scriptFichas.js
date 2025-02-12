@@ -13,19 +13,27 @@ function carregarFichas(aluno){
         .then(response => response.json())
         .then(fichas => {
             const fichasAluno = document.getElementById('fichas_aluno');
-
+            console.log(fichasAluno);
             fichasAluno.innerHTML = '';
 
             fichas.forEach(element => {
                 if(element.tipo_de_avaliacao){
                     const li = document.createElement('li');
+                    li.classList.add('list-item'); // Add the class
+
                     const link = document.createElement('a');
                     link.href = "#";  // Não direciona para outra   página
                     link.textContent = element.tipo_de_avaliacao;
+                    
+                    const score = document.createElement('span');
+                    score.textContent = element.media_plag;
+                    
                     link.onclick = function() {
                         carregarExercicios(aluno,element.tipo_de_avaliacao);  // Chama a função para carregar as fichas
                     };
+
                     li.appendChild(link);
+                    li.appendChild(score);
                     fichasAluno.appendChild(li);
                 }
             });
