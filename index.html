@@ -25,6 +25,12 @@
             const aluno = estado_A_Mostrar.nome_Aluno
             const ficha = estado_A_Mostrar.ficha
             carregarExercicios(aluno,ficha)
+        } else if(estado_A_Mostrar.mostrarTabela){
+            document.getElementById('codigo_alunos').style.display = 'none';
+            const aluno = estado_A_Mostrar.nome_aluno
+            const ficha = estado_A_Mostrar.tipo_avaliacao
+            const exercicio = estado_A_Mostrar.exercicio
+            carregarComparacoes(aluno,ficha,exercicio)
         }
     }
 </script>

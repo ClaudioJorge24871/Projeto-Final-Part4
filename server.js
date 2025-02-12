@@ -9,7 +9,7 @@ app.use(compression())
 
 // Configuração da base de dados
 const db = mysql.createConnection({
-    host: '192.168.0.104',
+    host: '192.168.8.191',
     user: 'claudio',
     password: 'Clauudio90#',
     database: 'compararplagiodb'
@@ -60,15 +60,15 @@ app.get('/:atributo/:tabela', (req, res) => {
             from ??
             where tipo_de_avaliacao like ? 
             and exercicio like ?
-            order by indPlagio desc;` , [tabela, `%${atributo[0]}%`,`%${atributo[1]}%`] , (err, resultados) => {
+            order by indPlagio desc;` , [tabela, `${atributo[0]}`,`${atributo[1]}`] , (err, resultados) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });
     }else if(tabela == "codigos_alunos"){
         db.query(`Select codigo 
             from ?? 
-            where tipo_avaliacao like ? and exercicio = ? and aluno = ?;` ,
-            [tabela, `%${atributo[0]}%`,`%${atributo[1]}%`,`%${atributo[2]}`] , (err, resultados) => {
+            where tipo_avaliacao like ? and exercicio = ? and aluno like ?;` ,
+            [tabela, `${atributo[0]}`,`${atributo[1]}`,`%${atributo[2]}%`] , (err, resultados) => {
         if (err) return res.status(500).send(err);
         res.json(resultados);  // Retorna os dados no formato JSON
         });

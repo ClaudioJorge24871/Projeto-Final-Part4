@@ -97,7 +97,7 @@ function criarTabela(alunos,matriz){
                 const aluno2 = alunos[colIndex];
                 // Add click event to call carregarCodigo
                 link.onclick = function () {
-                   carregarCodigo(aluno1, aluno2, selectedTipoDeAvaliacao, selectedExercicio);
+                   carregarCodigo(aluno, aluno1, aluno2, selectedTipoDeAvaliacao, selectedExercicio);
                 };
             }
             
