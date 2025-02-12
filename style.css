@@ -54,3 +54,9 @@ tr:hover {
 .valorAluno:hover {
     text-decoration: underline; 
 }
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    width: 300px; /* Adjust width */
+}
