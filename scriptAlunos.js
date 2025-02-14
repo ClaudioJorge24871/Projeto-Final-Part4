@@ -8,7 +8,6 @@ function carregarAlunos(){
     fetch('http://localhost:3000/aluno/alunos')
         .then(response => response.json())
         .then(dados => {
-            console.log(dados);
             const listaAlunos = document.getElementById('lista_alunos');
             
             listaAlunos.innerHTML = '';

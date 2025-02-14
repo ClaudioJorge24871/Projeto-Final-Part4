@@ -13,7 +13,6 @@ function carregarFichas(aluno){
         .then(response => response.json())
         .then(fichas => {
             const fichasAluno = document.getElementById('fichas_aluno');
-            console.log(fichasAluno);
             fichasAluno.innerHTML = '';
 
             fichas.forEach(element => {

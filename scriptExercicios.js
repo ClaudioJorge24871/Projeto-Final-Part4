@@ -17,7 +17,7 @@ function carregarExercicios(aluno,ficha){
         .then(response => response.json())
         .then(exercicios => {
             const listaExercicios = document.getElementById('exercicios_ficha_aluno');
-
+            console.log(exercicios)
             listaExercicios.innerHTML = '';
 
             exercicios.forEach(element => {
@@ -25,11 +25,18 @@ function carregarExercicios(aluno,ficha){
                     const li = document.createElement('li');
                     const link = document.createElement('a');
                     link.href = "#";  // Não direciona para outra página
+
+                    li.classList.add('list-item'); // Add the class
+                    const score = document.createElement('span');
+                    score.textContent = element.media_plag;
+
                     link.textContent = `Exercicio ${element.exercicio}`;
                     link.onclick = function(){
                         carregarComparacoes(aluno,ficha,element.exercicio)
                     }
+
                     li.appendChild(link);
+                    li.appendChild(score);
                     listaExercicios.appendChild(li);
                 }
             });
