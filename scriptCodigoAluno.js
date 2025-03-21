@@ -1,5 +1,5 @@
-function carregarCodigo(aluno,aluno1,aluno2,ficha,exercicio){
-    historico.push({ // rever
+function carregarCodigo(aluno, aluno1, aluno2, ficha, exercicio) {
+    historico.push({
         tipo_avaliacao: ficha,
         exercicio: exercicio,
         nome_aluno: aluno,
@@ -7,21 +7,19 @@ function carregarCodigo(aluno,aluno1,aluno2,ficha,exercicio){
         mostrarAlunos: false,
         mostrarExercicios: false,
         mostrarTabela: true
-    })
+    });
 
-    // rever titulo
-    // document.getElementById('titulo').textContent=`Exercicios da ${ficha} de ${aluno}`;
     document.getElementById('lista_alunos').style.display = 'none';
     document.getElementById('fichas_aluno').style.display = 'none';
     document.getElementById('exercicios_ficha_aluno').style.display = 'none';
     document.getElementById('tabela_container').style.display = 'none';
-    document.getElementById('codigo_alunos').style.display = 'block'
+    document.getElementById('codigo_alunos').style.display = 'block';
     document.getElementById('botao_voltar').style.display = 'block';
-    document.getElementById('titulo').textContent = `Códigos dos alunos ${aluno1} e ${aluno2}`
+    document.getElementById('titulo').textContent = `Códigos dos alunos ${aluno1} e ${aluno2}`;
 
-    const codigo_alunos = []
+    const codigo_alunos = [];
 
-    // fazer o fetch para aluno1 e para aluno2
+    // Fetch data for aluno1 and aluno2
     Promise.all([
         fetch(`http://localhost:3000/${ficha}_${exercicio}_${aluno1}/codigos_alunos`)
             .then(res => res.json()),
@@ -29,34 +27,36 @@ function carregarCodigo(aluno,aluno1,aluno2,ficha,exercicio){
             .then(res => res.json())
     ])
     .then(([codigo1, codigo2]) => {
-        codigo_alunos.push(codigo1, codigo2);
-        createTable(codigo_alunos); // Call table creation
+        // Ensure the data is structured correctly before pushing
+        if (codigo1 && codigo2) {
+            codigo_alunos.push(codigo1, codigo2);
+            createTable(codigo_alunos, aluno1, aluno2); // Pass student numbers to the table creation function
+        } else {
+            console.error("Error: Missing or invalid data for students");
+        }
     })
     .catch(error => {
         console.error("Error fetching data:", error);
     });
-    
 }
 
-function createTable(codigo_alunos) {
-    let table = document.createElement("table");
-    table.border = "1"; // Optional: Adds borders to the table
+function createTable(codigo_alunos, aluno1, aluno2) {
+    const container = document.getElementById("codigo_alunos");
+    container.innerHTML = "";
 
-    let tr = document.createElement("tr");
+    // Create containers for both students
+    [aluno1, aluno2].forEach((studentNum, index) => {
+        const codigoContainer = document.createElement("div");
+        codigoContainer.className = "codigo-container";
 
-    codigo_alunos.forEach(codigo => {
-        let td = document.createElement("td");
-        let pre = document.createElement("pre"); // Create a <pre> element
-        pre.textContent = codigo[0].codigo; // Add the formatted code
-        td.appendChild(pre);
-        tr.appendChild(td);
+        const h3 = document.createElement("h3");
+        h3.textContent = `Aluno ${index + 1}: ${studentNum}`;
+
+        const pre = document.createElement("pre");
+        pre.className = "codigo";
+        pre.textContent = codigo_alunos[index]?.[0]?.codigo || "No code available";
+
+        codigoContainer.append(h3, pre);
+        container.append(codigoContainer);
     });
-    
-
-    table.appendChild(tr);
-
-    let container = document.getElementById("codigo_alunos");
-    container.innerHTML = ""; // Clear previous content
-    container.appendChild(table);
-    
 }

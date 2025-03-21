@@ -9,7 +9,7 @@ app.use(compression())
 
 // Configuração da base de dados
 const db = mysql.createConnection({
-    host: '192.168.0.103',
+    host: '192.168.1.90',
     user: 'claudio',
     password: 'Clauudio90#',
     database: 'compararplagiodb'

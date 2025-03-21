@@ -1,14 +1,32 @@
+#tabela_container {
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 2000px; 
+    max-height: 80vh; 
+    overflow: auto; 
+    z-index: 1000;
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
+    font-size: 14px;
     text-align: left;
+    overflow-x: auto;
 }
 
 th, td {
     border: 1px solid #ddd;
     padding: 12px;
+    white-space: nowrap; 
 }
 
 th {
@@ -60,3 +78,165 @@ tr:hover {
     justify-content: space-between;
     width: 300px; /* Adjust width */
 }
+
+
+body, h1, ul, button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background: white;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+ul li:hover {
+    background: #ddd;
+}
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 14px;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.nan {
+    background-color: gray;
+    color: white;
+}
+
+.high {
+    background-color: red;
+    color: white;
+}
+
+.medium {
+    background-color: orange;
+    color: black;
+}
+
+.low {
+    background-color: lightgreen;
+    color: black;
+}
+
+.valorAluno {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.valorAluno:hover {
+    text-decoration: underline; 
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+#botao_voltar {
+    position: relative;
+    z-index: 1100; /* Ensure it's above other elements */
+    display: block; /* Ensure it's visible */
+    margin: 10px auto; /* Center it */
+}
+
+#codigo_alunos {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap; /* Prevent wrapping to new line */
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1400px;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+}
+
+.codigo-container {
+    flex: 0 0 auto; /* Each container takes equal width */
+    min-width: 400px; /* Minimum width before scrolling */
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.codigo-container h3 {
+    text-align: center;
+    background: #007BFF;
+    color: white;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.codigo {
+    font-family: monospace;
+    background: #eee;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+
