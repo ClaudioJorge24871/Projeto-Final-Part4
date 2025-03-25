@@ -199,59 +199,110 @@ tr:hover {
 
 #codigo_alunos {
     display: flex;
-    gap: 20px;
-    flex-wrap: nowrap;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    width: 90%;
-    max-width: 1400px;
-    overflow-x: auto;
+    gap: 30px;  
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    width: 95%;
+    max-width: 1600px;
+    min-height: 600px;
+    position: relative;
+    border: 1px solid #eee;
 }
 
 .codigo-container {
-    flex: 0 0 auto;
-    min-width: 400px;
-    margin: 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #f9f9f9;
+    flex: 1;  /* Make containers take equal space */
+    min-width: 45%;  /* Minimum 45% width for better spacing */
+    max-width: 50%;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.codigo-container:hover {
+    transform: translateY(-2px);
 }
 
 .codigo-container h3 {
-    text-align: center;
-    background: #007BFF;
-    color: white;
-    padding: 5px;
-    border-radius: 5px 5px 0 0;
+    background: #2c3e50;
+    color: #fff;
+    padding: 12px 20px;
+    margin: 0;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.codigo-container h3::before {
+    content: "📄";
+    font-size: 1.2em;
 }
 
 .codigo {
-    font-family: monospace;
-    background: #eee;
-    padding: 10px;
-    border-radius: 0 0 5px 5px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 16px;
+    font-family: 'Fira Code', monospace;
+    background: #ffffff;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    height: 70vh;
+    overflow: auto;
+    position: relative;
 }
 
-/*Color syntax styles*/
-.codigo .line {
-    padding: 2px;
-    margin: 1px 0;
-    white-space: pre-wrap;
+/* Enhanced Diff Styles */
+.line {
+    padding: 4px 8px;
+    margin: 2px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
 }
 
 .line.added {
-    background-color: #e6ffe6; /* Light green for additions */
+    background-color: #e8ffee;
+    border-left: 3px solid #2ecc71;
+    color: #27ae60;
 }
 
 .line.removed {
-    background-color: #ffe6e6; /* Light red for deletions */
+    background-color: #ffeef0;
+    border-left: 3px solid #e74c3c;
+    color: #c0392b;
 }
+
+/* Line Numbers */
+.line::before {
+    content: attr(data-line-number);
+    color: #95a5a6;
+    min-width: 40px;
+    padding-right: 15px;
+    font-size: 0.9em;
+    user-select: none;
+}
+
+/* Scrollbar Styling */
+.codigo::-webkit-scrollbar {
+    width: 8px;
+}
+
+.codigo::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.codigo::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.codigo::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+
 
 
