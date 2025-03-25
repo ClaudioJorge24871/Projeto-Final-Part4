@@ -1,7 +1,6 @@
-function carregarAlunos(){
-
+function carregarAlunos() {
     document.getElementById('lista_alunos').style.display = 'block';
-    document.getElementById('titulo').textContent=`Alunos`;
+    document.getElementById('titulo').textContent = `Alunos`;
     document.getElementById('fichas_aluno').style.display = 'none';
     document.getElementById('botao_voltar').style.display = 'none';
 
@@ -9,23 +8,27 @@ function carregarAlunos(){
         .then(response => response.json())
         .then(dados => {
             const listaAlunos = document.getElementById('lista_alunos');
-            
             listaAlunos.innerHTML = '';
 
+            // Sort the alunos by media_plag in descending order
+            dados.sort((a, b) => {
+                return parseFloat(b.media_plag) - parseFloat(a.media_plag);
+            });
+
             dados.forEach(element => {
-                if(element.aluno){
+                if (element.aluno) {
                     const li = document.createElement('li');
-                    li.classList.add('list-item'); // Add the class
+                    li.classList.add('list-item');
 
                     const link = document.createElement('a');
-                    link.href = "#";  // Não direciona para outra   página
+                    link.href = "#";
                     link.textContent = element.aluno;
 
                     const score = document.createElement('span');
                     score.textContent = element.media_plag;
-                    
+
                     link.onclick = function() {
-                        carregarFichas(element.aluno);  // Chama a função para carregar as fichas
+                        carregarFichas(element.aluno);
                     };
                     li.appendChild(link);
                     li.appendChild(score);
@@ -37,4 +40,3 @@ function carregarAlunos(){
             console.error('Erro ao carregar dados:', error);
         });
 }
-window.onload = carregarAlunos;

@@ -200,7 +200,7 @@ tr:hover {
 #codigo_alunos {
     display: flex;
     gap: 20px;
-    flex-wrap: nowrap; /* Prevent wrapping to new line */
+    flex-wrap: nowrap;
     background: white;
     padding: 20px;
     border-radius: 5px;
@@ -208,12 +208,12 @@ tr:hover {
     margin: 20px auto;
     width: 90%;
     max-width: 1400px;
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    overflow-x: auto;
 }
 
 .codigo-container {
-    flex: 0 0 auto; /* Each container takes equal width */
-    min-width: 400px; /* Minimum width before scrolling */
+    flex: 0 0 auto;
+    min-width: 400px;
     margin: 0;
     padding: 10px;
     border: 1px solid #ddd;

@@ -13,7 +13,7 @@ function carregarCodigo(aluno, aluno1, aluno2, ficha, exercicio) {
     document.getElementById('fichas_aluno').style.display = 'none';
     document.getElementById('exercicios_ficha_aluno').style.display = 'none';
     document.getElementById('tabela_container').style.display = 'none';
-    document.getElementById('codigo_alunos').style.display = 'block';
+    document.getElementById('codigo_alunos').style.display = 'flex';
     document.getElementById('botao_voltar').style.display = 'block';
     document.getElementById('titulo').textContent = `Códigos dos alunos ${aluno1} e ${aluno2}`;
 
