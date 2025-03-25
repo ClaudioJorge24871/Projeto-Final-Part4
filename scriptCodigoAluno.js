@@ -44,6 +44,36 @@ function createTable(codigo_alunos, aluno1, aluno2) {
     const container = document.getElementById("codigo_alunos");
     container.innerHTML = "";
 
+    const code1 = codigo_alunos[0]?.[0]?.codigo || "";
+    const code2 = codigo_alunos[1]?.[0]?.codigo || "";
+
+    // Generate line differences
+    const diff = Diff.diffLines(code1, code2);
+
+    // Process code1 to highlight removed lines
+    let code1Html = "";
+    diff.forEach(part => {
+        if (part.added) return; // Skip added parts in code1
+        const lines = part.value.split('\n');
+        lines.forEach(line => {
+            if (line === "") return; // Skip empty lines
+            const cls = part.removed ? 'removed' : '';
+            code1Html += `<div class="line ${cls}">${line}</div>`;
+        });
+    });
+
+    // Process code2 to highlight added lines
+    let code2Html = "";
+    diff.forEach(part => {
+        if (part.removed) return; // Skip removed parts in code2
+        const lines = part.value.split('\n');
+        lines.forEach(line => {
+            if (line === "") return;
+            const cls = part.added ? 'added' : '';
+            code2Html += `<div class="line ${cls}">${line}</div>`;
+        });
+    });
+
     // Create containers for both students
     [aluno1, aluno2].forEach((studentNum, index) => {
         const codigoContainer = document.createElement("div");
@@ -52,9 +82,9 @@ function createTable(codigo_alunos, aluno1, aluno2) {
         const h3 = document.createElement("h3");
         h3.textContent = `Aluno ${index + 1}: ${studentNum}`;
 
-        const pre = document.createElement("pre");
+        const pre = document.createElement("div");
         pre.className = "codigo";
-        pre.textContent = codigo_alunos[index]?.[0]?.codigo || "No code available";
+        pre.innerHTML = index === 0 ? code1Html : code2Html;
 
         codigoContainer.append(h3, pre);
         container.append(codigoContainer);
