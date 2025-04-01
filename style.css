@@ -213,8 +213,8 @@ tr:hover {
 }
 
 .codigo-container {
-    flex: 1;  /* Make containers take equal space */
-    min-width: 45%;  /* Minimum 45% width for better spacing */
+    flex: 1; 
+    min-width: 45%; 
     max-width: 50%;
     background: #f8f9fa;
     border-radius: 8px;
@@ -244,45 +244,75 @@ tr:hover {
 }
 
 .codigo {
+    background: #1e1e1e !important;
+    color: #d4d4d4;
     font-family: 'Fira Code', monospace;
-    background: #ffffff;
+    white-space: pre; 
+    overflow-x: auto;
     padding: 15px;
     font-size: 14px;
     line-height: 1.6;
     height: 70vh;
-    overflow: auto;
-    position: relative;
+    tab-size: 4;
 }
 
-/* Enhanced Diff Styles */
 .line {
-    padding: 4px 8px;
-    margin: 2px 0;
+    display: block;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+    text-align: left;
     border-radius: 3px;
-    display: flex;
-    align-items: center;
 }
 
+/* Line number styling */
+.line::before {
+    content: attr(data-line-number);
+    color: #858585;
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+    padding-right: 15px;
+    user-select: none;
+    opacity: 0.6;
+}
+
+/* Diff highlighting adjustments */
 .line.added {
-    background-color: #e8ffee;
-    border-left: 3px solid #2ecc71;
-    color: #27ae60;
+    background-color: #1f341b;
+    border-left: 3px solid #4CAF50 !important;
 }
 
 .line.removed {
-    background-color: #ffeef0;
-    border-left: 3px solid #e74c3c;
-    color: #c0392b;
+    background-color: #381414;
+    border-left: 3px solid #F44336 !important;
 }
 
-/* Line Numbers */
-.line::before {
-    content: attr(data-line-number);
-    color: #95a5a6;
-    min-width: 40px;
-    padding-right: 15px;
-    font-size: 0.9em;
-    user-select: none;
+/* Prism theme overrides for better contrast */
+.token.keyword {
+    color: #569cd6 !important;
+}
+
+.token.class-name {
+    color: #4ec9b0 !important;
+}
+
+.token.string {
+    color: #ce9178 !important;
+}
+
+.token.function {
+    color: #dcdcaa !important;
+}
+
+.token.whitespace {
+    position: relative;
+}
+.token.whitespace::after {
+    content: '·';
+    position: absolute;
+    color: #85858570;
+    font-weight: bold;
 }
 
 /* Scrollbar Styling */
@@ -302,7 +332,3 @@ tr:hover {
 .codigo::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
-
-
-
-

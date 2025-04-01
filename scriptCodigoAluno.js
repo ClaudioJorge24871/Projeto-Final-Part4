@@ -52,25 +52,32 @@ function createTable(codigo_alunos, aluno1, aluno2) {
 
     // Process code1 to highlight removed lines
     let code1Html = "";
+    let lineNumber1 = 1;
     diff.forEach(part => {
-        if (part.added) return; // Skip added parts in code1
+        if (part.added) return;
         const lines = part.value.split('\n');
         lines.forEach(line => {
-            if (line === "") return; // Skip empty lines
+            if (line === "") return;
             const cls = part.removed ? 'removed' : '';
-            code1Html += `<div class="line ${cls}">${line}</div>`;
+            const formattedLine = line.replace(/\t/g, '    '); // Converter os tabs para 4 espaços para ser detetado no css
+            const highlighted = Prism.highlight(formattedLine, Prism.languages.java, 'java');
+            code1Html += `<div class="line ${cls}" data-line-number="${lineNumber1}">${highlighted}</div>`;
+            lineNumber1++;
         });
     });
 
     // Process code2 to highlight added lines
     let code2Html = "";
+    let lineNumber2 = 1;
     diff.forEach(part => {
-        if (part.removed) return; // Skip removed parts in code2
+        if (part.removed) return;
         const lines = part.value.split('\n');
         lines.forEach(line => {
             if (line === "") return;
             const cls = part.added ? 'added' : '';
-            code2Html += `<div class="line ${cls}">${line}</div>`;
+            const highlighted = Prism.highlight(line, Prism.languages.java, 'java');
+            code2Html += `<div class="line ${cls}" data-line-number="${lineNumber2}">${highlighted}</div>`;
+            lineNumber2++;
         });
     });
 
